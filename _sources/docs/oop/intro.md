@@ -8,6 +8,6 @@ En la POO, los objetos interactúan entre sí a través de mensajes, lo que perm
 de una manera más estructurada y mantenible.
 
 
-<img src="../images/intro.jpg" alt="Descripción de la imagen" width="300">
+<img src="https://raw.githubusercontent.com/fralfaro/python_advanced/main/docs/oop/images/intro.jpg" alt="Descripción de la imagen" width="300">
 
 <!-- #endregion -->
