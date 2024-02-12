@@ -1,0 +1,855 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1.2. Clases en Python &#8212; Python Avanzado</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-TB617QHPDG"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-TB617QHPDG');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-TB617QHPDG');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/oop/oop_conceptos_basicos';</script>
+    <link rel="icon" href="../../_static/icon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.3. Herencia" href="oop_herencia.html" />
+    <link rel="prev" title="1.1. Conceptos Claves" href="definiciones.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/python.svg" class="logo__image only-light" alt="Python Avanzado - Home"/>
+    <script>document.write(`<img src="../../_static/python.svg" class="logo__image only-dark" alt="Python Avanzado - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Python Avanzado
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contenidos</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">1. POO</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="definiciones.html">1.1. Conceptos Claves</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.2. Clases en Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oop_herencia.html">1.3. Herencia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oop_cohesion.html">1.4. Cohesión</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oop_abstraccion.html">1.5. Abstracción</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oop_polimorfismo.html">1.6. Polimorfismo en programación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oop_acoplamiento.html">1.7. Acoplamiento en programación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oop_encapsulamiento.html">1.8. Encapsulamiento</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solid/intro.html">2. SOLID</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solid/1_srp.html">2.1. Single Responsibility Principle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solid/2_ocp.html">2.2. Open-Closed Principle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solid/3_lsp.html">2.3. Liskov Substitution Principle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solid/4_isp.html">2.4. Interface Segregation Principle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solid/5_dip.html">2.5. Dependency Inversion Principle</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../patterns/intro.html">3. Patrones de Diseño</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/definiciones.html">3.1. Conceptos Claves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/creacionales.html">3.2. Patrones de creación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/estructurales.html">3.3. Patrones estructurales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/comportamiento.html">3.4. Patrones de comportamiento</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/fralfaro/python_advanced" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/oop/oop_conceptos_basicos.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Clases en Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-y-objetos">1.2.1. Clases y objetos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definiendo-atributos">1.2.2. Definiendo atributos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definiendo-metodos">1.2.3. Definiendo métodos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-metodos">1.2.3.1. Tipos de métodos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-instancia">1.2.3.1.1. <strong>Métodos de instancia</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-clase">1.2.3.1.2. <strong>Métodos de clase</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-estaticos">1.2.3.1.3. <strong>Métodos estáticos</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="clases-en-python">
+<h1><span class="section-number">1.2. </span>Clases en Python<a class="headerlink" href="#clases-en-python" title="Link to this heading">#</a></h1>
+<p>Una <strong>clase</strong> es una plantilla que define la estructura y el comportamiento de un tipo de objeto. Las clases en Python permiten crear objetos que tienen propiedades (atributos) y pueden realizar acciones específicas (métodos). Son una parte fundamental de la programación orientada a objetos en Python.</p>
+<img src="https://pythones.net/wp-content/uploads/2019/01/Clases-y-Objetos-min-577x1024-min.png" alt="Descripción de la imagen" width="400"><section id="clases-y-objetos">
+<h2><span class="section-number">1.2.1. </span>Clases y objetos<a class="headerlink" href="#clases-y-objetos" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Una <strong>clase</strong> es una entidad que define una serie de elementos que determinan un estado (datos) y un comportamiento (operaciones sobre los datos que modifican su estado).</p></li>
+<li><p>Por su parte, un <strong>objeto</strong> es una concreción o instancia de una clase.</p></li>
+</ul>
+<p>Lo primero es crear una clase, para ello usaremos el ejemplo de perro. Para crear una clase se ocupa el comando <code class="docutils literal notranslate"><span class="pre">class</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creando una clase vacía</span>
+<span class="k">class</span> <span class="nc">Perro</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se trata de una clase vacía y sin mucha utilidad práctica, pero es la mínima clase que podemos crear. Nótese el uso del pass que no hace realmente nada, pero daría un error si después de los : no tenemos contenido.</p>
+<p>Ahora que tenemos la <strong>clase</strong>, podemos crear un <strong>objeto</strong> de la misma. Podemos hacerlo como si de una variable normal se tratase. Nombre de la variable igual a la clase con <code class="docutils literal notranslate"><span class="pre">()</span></code>. Dentro de los paréntesis irían los parámetros de entrada si los hubiera.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creamos un objeto de la clase perro</span>
+<span class="n">mi_perro</span> <span class="o">=</span> <span class="n">Perro</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Observación</strong>: El nombre de la clase debe comenzar con Mayúscula (Ejemplo: Perro).</p>
+</div></blockquote>
+</section>
+<section id="definiendo-atributos">
+<h2><span class="section-number">1.2.2. </span>Definiendo atributos<a class="headerlink" href="#definiendo-atributos" title="Link to this heading">#</a></h2>
+<p>A continuación vamos a añadir algunos atributos a nuestra clase. Antes de nada es importante distinguir que existen dos tipos de atributos:</p>
+<ul class="simple">
+<li><p><strong>Atributos de instancia</strong>: Pertenecen a la instancia de la clase o al objeto. Son atributos particulares de cada instancia, en nuestro caso de cada perro.</p></li>
+<li><p><strong>Atributos de clase</strong>: Se trata de atributos que pertenecen a la clase, por lo tanto serán comunes para todos los objetos.</p></li>
+</ul>
+<p>Empecemos creando un par de atributos de instancia para nuestro perro, el nombre y la raza. Para ello creamos un método <code class="docutils literal notranslate"><span class="pre">__init__</span></code> que será llamado automáticamente cuando creemos un objeto. Se trata del <strong>constructor</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Perro</span><span class="p">:</span>
+    <span class="c1"># El método __init__ es llamado al crear el objeto</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">raza</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creando perro </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">raza</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Atributos de instancia</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raza</span> <span class="o">=</span> <span class="n">raza</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora que hemos definido el método <code class="docutils literal notranslate"><span class="pre">__init__</span></code> con dos parámetros de entrada, podemos crear el objeto pasando el valor de los atributos. Usando <code class="docutils literal notranslate"><span class="pre">type()</span></code> podemos ver como efectivamente el objeto es de la clase Perro.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_perro</span> <span class="o">=</span> <span class="n">Perro</span><span class="p">(</span><span class="s2">&quot;Toby&quot;</span><span class="p">,</span> <span class="s2">&quot;Bulldog&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">mi_perro</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creando perro Toby, Bulldog
+&lt;class &#39;__main__.Perro&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Seguramente te hayas fijado en el <code class="docutils literal notranslate"><span class="pre">self</span></code> que se pasa como parámetro de entrada del método. Es una variable que representa la instancia de la clase, y deberá estar siempre ahí.</p>
+<p>El uso de <code class="docutils literal notranslate"><span class="pre">__init__</span></code> y el doble <code class="docutils literal notranslate"><span class="pre">__</span></code> no es una coincidencia. Cuando veas un método con esa forma, significa que está reservado para un uso especial del lenguaje. En este caso sería lo que se conoce como constructor. Hay gente que llama a estos <strong>métodos mágicos</strong>.</p>
+<p>Por último, podemos acceder a los atributos usando el objeto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mi_perro</span><span class="o">.</span><span class="n">nombre</span><span class="p">)</span> <span class="c1"># Toby</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_perro</span><span class="o">.</span><span class="n">raza</span><span class="p">)</span>   <span class="c1"># Bulldog</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Toby
+Bulldog
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hasta ahora hemos definido atributos de instancia, ya que son atributos que pertenecen a cada perro concreto. Ahora vamos a definir un atributo de clase, que será común para todos los perros. Por ejemplo, la especie de los perros es algo común para todos los objetos Perro.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Perro</span><span class="p">:</span>
+    <span class="c1"># Atributo de clase</span>
+    <span class="n">especie</span> <span class="o">=</span> <span class="s1">&#39;mamífero&#39;</span>
+
+    <span class="c1"># El método __init__ es llamado al crear el objeto</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">raza</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creando perro </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">raza</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Atributos de instancia</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raza</span> <span class="o">=</span> <span class="n">raza</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dado que es un atributo de clase, no es necesario crear un objeto para acceder al atributos. Podemos hacer lo siguiente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Perro</span><span class="o">.</span><span class="n">especie</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mamífero
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se puede acceder también al atributo de clase desde el objeto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_perro</span> <span class="o">=</span> <span class="n">Perro</span><span class="p">(</span><span class="s2">&quot;Toby&quot;</span><span class="p">,</span> <span class="s2">&quot;Bulldog&quot;</span><span class="p">)</span>
+<span class="n">mi_perro</span><span class="o">.</span><span class="n">especie</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creando perro Toby, Bulldog
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;mamífero&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>De esta manera, todos los objetos que se creen de la clase perro compartirán ese atributo de clase, ya que pertenecen a la misma.</p>
+</section>
+<section id="definiendo-metodos">
+<h2><span class="section-number">1.2.3. </span>Definiendo métodos<a class="headerlink" href="#definiendo-metodos" title="Link to this heading">#</a></h2>
+<p>Los <strong>métodos</strong> son las funciones que se definen dentro de una clase y que, por consiguiente, pueden ser referenciadas por los objetos de dicha clase.</p>
+<p>Vamos a codificar dos métodos, <code class="docutils literal notranslate"><span class="pre">ladrar</span></code> y <code class="docutils literal notranslate"><span class="pre">caminar</span></code>. El primero no recibirá ningún parámetro y el segundo recibirá el número de pasos que queremos andar. Como hemos indicado anteriormente <code class="docutils literal notranslate"><span class="pre">self</span></code> hace referencia a la instancia de la clase. Se puede definir un método con <code class="docutils literal notranslate"><span class="pre">def</span></code> y el nombre, y entre <code class="docutils literal notranslate"><span class="pre">()</span></code> los parámetros de entrada que recibe, donde siempre tendrá que estar <code class="docutils literal notranslate"><span class="pre">self</span></code> el primero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Perro</span><span class="p">:</span>
+    <span class="c1"># Atributo de clase</span>
+    <span class="n">especie</span> <span class="o">=</span> <span class="s1">&#39;mamífero&#39;</span>
+
+    <span class="c1"># El método __init__ es llamado al crear el objeto</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">raza</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creando perro </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">raza</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Atributos de instancia</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raza</span> <span class="o">=</span> <span class="n">raza</span>
+
+    <span class="k">def</span> <span class="nf">ladra</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Guau&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">camina</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pasos</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Caminando </span><span class="si">{</span><span class="n">pasos</span><span class="si">}</span><span class="s2"> pasos&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Por lo tanto si creamos un objeto <code class="docutils literal notranslate"><span class="pre">mi_perro</span></code>, podremos hacer uso de sus métodos llamándolos con <code class="docutils literal notranslate"><span class="pre">.</span></code> y el nombre del método. Como si de una función se tratase, pueden recibir y devolver argumentos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_perro</span> <span class="o">=</span> <span class="n">Perro</span><span class="p">(</span><span class="s2">&quot;Toby&quot;</span><span class="p">,</span> <span class="s2">&quot;Bulldog&quot;</span><span class="p">)</span>
+<span class="n">mi_perro</span><span class="o">.</span><span class="n">ladra</span><span class="p">()</span>
+<span class="n">mi_perro</span><span class="o">.</span><span class="n">camina</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creando perro Toby, Bulldog
+Guau
+Caminando 10 pasos
+</pre></div>
+</div>
+</div>
+</div>
+<section id="tipos-de-metodos">
+<h3><span class="section-number">1.2.3.1. </span>Tipos de métodos<a class="headerlink" href="#tipos-de-metodos" title="Link to this heading">#</a></h3>
+<p>Hemos visto como se pueden crear métodos con def dentro de una clase, pudiendo recibir parámetros como entrada y modificar el estado (como los atributos) de la instancia. Pues bien, haciendo uso de los decoradores, es posible crear diferentes tipos de métodos:</p>
+<ul class="simple">
+<li><p>Lo métodos de instancia “normales” que ya hemos visto como metodo()</p></li>
+<li><p>Métodos de clase usando el decorador <code class="docutils literal notranslate"><span class="pre">&#64;classmethod</span></code></p></li>
+<li><p>Y métodos estáticos usando el decorador <code class="docutils literal notranslate"><span class="pre">&#64;staticmethod</span></code></p></li>
+</ul>
+<p>En la siguiente clase tenemos un ejemplo donde definimos los tres tipos de métodos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Clase</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">metodo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;Método normal&#39;</span><span class="p">,</span> <span class="bp">self</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">metododeclase</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;Método de clase&#39;</span><span class="p">,</span> <span class="bp">cls</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">metodoestatico</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s2">&quot;Método estático&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="metodos-de-instancia">
+<h4><span class="section-number">1.2.3.1.1. </span><strong>Métodos de instancia</strong><a class="headerlink" href="#metodos-de-instancia" title="Link to this heading">#</a></h4>
+<p>Los <strong>métodos de instancia</strong> son los métodos normales, de toda la vida, que hemos visto anteriormente. Reciben como parámetro de entrada <code class="docutils literal notranslate"><span class="pre">self</span></code> que hace referencia a la instancia que llama al método. También pueden recibir otros argumentos como entrada.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Clase</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">metodo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;Método normal&#39;</span><span class="p">,</span> <span class="bp">self</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Y como ya sabemos, una vez creado un objeto pueden ser llamados.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_clase</span> <span class="o">=</span> <span class="n">Clase</span><span class="p">()</span>
+<span class="n">mi_clase</span><span class="o">.</span><span class="n">metodo</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Método normal&#39;, &lt;__main__.Clase at 0x2d6ce7e4ac0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>En vista a esto, los métodos de instancia:</p>
+<ul class="simple">
+<li><p>Pueden acceder y modificar los atributos del objeto.</p></li>
+<li><p>Pueden acceder a otros métodos.</p></li>
+<li><p>Dado que desde el objeto self se puede acceder a la clase con <code class="docutils literal notranslate"> <span class="pre">self.class</span></code>, también pueden modificar el estado de la clase</p></li>
+</ul>
+</section>
+<section id="metodos-de-clase">
+<h4><span class="section-number">1.2.3.1.2. </span><strong>Métodos de clase</strong><a class="headerlink" href="#metodos-de-clase" title="Link to this heading">#</a></h4>
+<p>A diferencia de los métodos de instancia, los <strong>métodos de clase</strong> reciben como argumento <code class="docutils literal notranslate"><span class="pre">cls</span></code>, que hace referencia a la clase. Por lo tanto, pueden acceder a la clase pero no a la instancia.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Clase</span><span class="p">:</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">metododeclase</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;Método de clase&#39;</span><span class="p">,</span> <span class="bp">cls</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se pueden llamar sobre la clase.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Clase</span><span class="o">.</span><span class="n">metododeclase</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Método de clase&#39;, __main__.Clase)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pero también se pueden llamar sobre el objeto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_clase</span> <span class="o">=</span> <span class="n">Clase</span><span class="p">()</span>
+<span class="n">mi_clase</span><span class="o">.</span><span class="n">metododeclase</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Método de clase&#39;, __main__.Clase)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Por lo tanto, los métodos de clase:</p>
+<ul class="simple">
+<li><p>No pueden acceder a los atributos de la instancia.</p></li>
+<li><p>Pero si pueden modificar los atributos de la clase.</p></li>
+</ul>
+</section>
+<section id="metodos-estaticos">
+<h4><span class="section-number">1.2.3.1.3. </span><strong>Métodos estáticos</strong><a class="headerlink" href="#metodos-estaticos" title="Link to this heading">#</a></h4>
+<p>Los <strong>métodos estáticos</strong> se pueden definir con el decorador <code class="docutils literal notranslate"><span class="pre">&#64;staticmethod</span></code> y no aceptan como parámetro ni la instancia ni la clase. Es por ello por lo que no pueden modificar el estado ni de la clase ni de la instancia. Pero por supuesto pueden aceptar parámetros de entrada.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Clase</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">metodoestatico</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s2">&quot;Método estático&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_clase</span> <span class="o">=</span> <span class="n">Clase</span><span class="p">()</span>
+<span class="n">Clase</span><span class="o">.</span><span class="n">metodoestatico</span><span class="p">()</span>
+<span class="n">mi_clase</span><span class="o">.</span><span class="n">metodoestatico</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Método estático&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Por lo tanto el uso de los métodos estáticos pueden resultar útil para indicar que un método no modificará el estado de la instancia ni de la clase. Es cierto que se podría hacer lo mismo con un método de instancia por ejemplo, pero a veces resulta importante indicar de alguna manera estas peculiaridades, evitando así futuros problemas y malentendidos.</p>
+<p>En otras palabras, los métodos estáticos se podrían ver como funciones normales, con la salvedad de que van ligadas a una clase concreta.</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs/oop"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="definiciones.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1.1. </span>Conceptos Claves</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="oop_herencia.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1.3. </span>Herencia</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-y-objetos">1.2.1. Clases y objetos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definiendo-atributos">1.2.2. Definiendo atributos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definiendo-metodos">1.2.3. Definiendo métodos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-metodos">1.2.3.1. Tipos de métodos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-instancia">1.2.3.1.1. <strong>Métodos de instancia</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-clase">1.2.3.1.2. <strong>Métodos de clase</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-estaticos">1.2.3.1.3. <strong>Métodos estáticos</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Francisco Alfaro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

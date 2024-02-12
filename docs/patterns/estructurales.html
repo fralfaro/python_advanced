@@ -1,0 +1,1093 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3.3. Patrones estructurales &#8212; Python Avanzado</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-TB617QHPDG"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-TB617QHPDG');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-TB617QHPDG');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/patterns/estructurales';</script>
+    <link rel="icon" href="../../_static/icon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3.4. Patrones de comportamiento" href="comportamiento.html" />
+    <link rel="prev" title="3.2. Patrones de creación" href="creacionales.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/python.svg" class="logo__image only-light" alt="Python Avanzado - Home"/>
+    <script>document.write(`<img src="../../_static/python.svg" class="logo__image only-dark" alt="Python Avanzado - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Python Avanzado
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contenidos</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../oop/intro.html">1. POO</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../oop/definiciones.html">1.1. Conceptos Claves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oop/oop_conceptos_basicos.html">1.2. Clases en Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oop/oop_herencia.html">1.3. Herencia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oop/oop_cohesion.html">1.4. Cohesión</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oop/oop_abstraccion.html">1.5. Abstracción</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oop/oop_polimorfismo.html">1.6. Polimorfismo en programación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oop/oop_acoplamiento.html">1.7. Acoplamiento en programación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oop/oop_encapsulamiento.html">1.8. Encapsulamiento</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solid/intro.html">2. SOLID</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solid/1_srp.html">2.1. Single Responsibility Principle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solid/2_ocp.html">2.2. Open-Closed Principle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solid/3_lsp.html">2.3. Liskov Substitution Principle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solid/4_isp.html">2.4. Interface Segregation Principle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solid/5_dip.html">2.5. Dependency Inversion Principle</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">3. Patrones de Diseño</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="definiciones.html">3.1. Conceptos Claves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creacionales.html">3.2. Patrones de creación</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.3. Patrones estructurales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comportamiento.html">3.4. Patrones de comportamiento</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/fralfaro/python_advanced" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/patterns/estructurales.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Patrones estructurales</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adapter">3.3.1. Adapter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bridge">3.3.2. Bridge</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#composite">3.3.3. Composite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decorator">3.3.4. Decorator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#facade">3.3.5. Facade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flyweight">3.3.6. Flyweight</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proxy">3.3.7. Proxy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-patrones">3.3.8. Otros patrones</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="patrones-estructurales">
+<h1><span class="section-number">3.3. </span>Patrones estructurales<a class="headerlink" href="#patrones-estructurales" title="Link to this heading">#</a></h1>
+<p>Los <strong>patrones estructurales</strong> son un conjunto de patrones de diseño en ingeniería de software que se centran en la composición de clases y objetos para formar estructuras más grandes y complejas. Estos patrones de diseño ayudan a definir relaciones entre objetos y clases de manera más flexible, permitiendo cambios en la estructura del sistema sin tener que cambiar sus componentes internos.</p>
+<section id="adapter">
+<h2><span class="section-number">3.3.1. </span>Adapter<a class="headerlink" href="#adapter" title="Link to this heading">#</a></h2>
+<p>El patrón <strong>Adapter</strong> es un patrón de diseño estructural que permite que interfaces incompatibles trabajen juntas. Este patrón convierte la interfaz de una clase en otra interfaz que un cliente espera, permitiendo que objetos con interfaces incompatibles puedan colaborar entre sí.</p>
+<p><img alt="adapter" src="../../_images/adapter.png" /></p>
+<p><strong>Estructura del Patrón Adapter</strong>:</p>
+<ul class="simple">
+<li><p><strong>Cliente:</strong> Es la clase que interactúa con el Adaptador para utilizar los servicios proporcionados por el Adaptee.</p></li>
+<li><p><strong>Target:</strong> Define la interfaz específica que utiliza el Cliente.</p></li>
+<li><p><strong>Adaptee:</strong> Es la clase existente que tiene una interfaz incompatible con la que el Cliente espera.</p></li>
+<li><p><strong>Adapter:</strong> Es la clase que conecta el Cliente con el Adaptee. Implementa la interfaz del Target y mantiene una referencia al Adaptee, delegando las llamadas del Cliente al Adaptee.</p></li>
+</ul>
+<p>En este ejemplo, supongamos que tenemos un sistema que necesita mostrar información de libros, pero la clase <code class="docutils literal notranslate"><span class="pre">Book</span></code> proporciona una interfaz incompatibles con la interfaz requerida por el cliente. Utilizaremos el patrón Adapter para adaptar la interfaz de <code class="docutils literal notranslate"><span class="pre">Book</span></code> a la interfaz requerida por el cliente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="c1"># Target</span>
+<span class="k">class</span> <span class="nc">BookViewer</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">display_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="c1"># Adaptee</span>
+<span class="k">class</span> <span class="nc">Book</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">author</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="n">author</span>
+
+    <span class="k">def</span> <span class="nf">get_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
+
+    <span class="k">def</span> <span class="nf">get_author</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">author</span>
+
+<span class="c1"># Adapter</span>
+<span class="k">class</span> <span class="nc">BookAdapter</span><span class="p">(</span><span class="n">BookViewer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">book</span> <span class="o">=</span> <span class="n">book</span>
+
+    <span class="k">def</span> <span class="nf">display_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Title: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">book</span><span class="o">.</span><span class="n">get_title</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Author: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">book</span><span class="o">.</span><span class="n">get_author</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Cliente</span>
+<span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_viewer</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">book_viewer</span> <span class="o">=</span> <span class="n">book_viewer</span>
+
+    <span class="k">def</span> <span class="nf">display_book_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">book_viewer</span><span class="o">.</span><span class="n">display_info</span><span class="p">()</span>
+
+<span class="c1"># Uso del patrón Adapter</span>
+<span class="n">book</span> <span class="o">=</span> <span class="n">Book</span><span class="p">(</span><span class="s2">&quot;The Hobbit&quot;</span><span class="p">,</span> <span class="s2">&quot;J.R.R. Tolkien&quot;</span><span class="p">)</span>
+<span class="n">adapter</span> <span class="o">=</span> <span class="n">BookAdapter</span><span class="p">(</span><span class="n">book</span><span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">App</span><span class="p">(</span><span class="n">adapter</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">display_book_info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Title: The Hobbit
+Author: J.R.R. Tolkien
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Book</span></code> es la clase existente con una interfaz incompatible.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BookViewer</span></code> define la interfaz requerida por el cliente.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BookAdapter</span></code> es el adaptador que conecta la interfaz de <code class="docutils literal notranslate"><span class="pre">Book</span></code> con la interfaz de <code class="docutils literal notranslate"><span class="pre">BookViewer</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">App</span></code> es el cliente que utiliza la interfaz de <code class="docutils literal notranslate"><span class="pre">BookViewer</span></code> para mostrar la información del libro.</p></li>
+</ul>
+<p>El adaptador <code class="docutils literal notranslate"><span class="pre">BookAdapter</span></code> permite al cliente utilizar la clase <code class="docutils literal notranslate"><span class="pre">Book</span></code> a través de la interfaz de <code class="docutils literal notranslate"><span class="pre">BookViewer</span></code>, a pesar de que sus interfaces son incompatibles. Esto permite una mayor flexibilidad y reutilización de código en el sistema.</p>
+</section>
+<section id="bridge">
+<h2><span class="section-number">3.3.2. </span>Bridge<a class="headerlink" href="#bridge" title="Link to this heading">#</a></h2>
+<p>El patrón <strong>Bridge</strong> es un patrón de diseño estructural que separa la abstracción de su implementación, permitiendo que ambas puedan variar de forma independiente. Este patrón se utiliza cuando se necesita evitar una unión fija entre la abstracción y su implementación, lo que permite que ambos puedan cambiar y evolucionar de forma independiente sin necesidad de modificar el otro.</p>
+<p><img alt="bridge" src="../../_images/bridge.png" /></p>
+<p><strong>Estructura del Patrón Bridge</strong>:</p>
+<ul class="simple">
+<li><p><strong>Abstracción:</strong> Define la interfaz de alto nivel que el cliente utiliza para interactuar con el sistema. Mantiene una referencia a un objeto de Implementación.</p></li>
+<li><p><strong>Implementación:</strong> Define la interfaz de bajo nivel que define las operaciones concretas que se pueden realizar. Puede haber múltiples implementaciones, y la abstracción se refiere a una de ellas.</p></li>
+<li><p><strong>Implementador Concreto:</strong> Es una implementación concreta de la interfaz Implementación.</p></li>
+<li><p><strong>Refinamiento Abstracción:</strong> Extiende la interfaz de Abstracción proporcionando una funcionalidad más detallada.</p></li>
+</ul>
+<p>Supongamos que tenemos un sistema de formas geométricas que necesitan ser dibujadas en diferentes sistemas operativos (Windows y Linux). Utilizaremos el patrón Bridge para separar las clases de formas de su implementación de dibujo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="c1"># Implementación</span>
+<span class="k">class</span> <span class="nc">DrawingAPI</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">draw_circle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="c1"># Implementación Concreta</span>
+<span class="k">class</span> <span class="nc">DrawingAPI1</span><span class="p">(</span><span class="n">DrawingAPI</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">draw_circle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;API1 drawing a circle at (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">) with radius </span><span class="si">{</span><span class="n">radius</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Implementación Concreta</span>
+<span class="k">class</span> <span class="nc">DrawingAPI2</span><span class="p">(</span><span class="n">DrawingAPI</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">draw_circle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;API2 drawing a circle at (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">) with radius </span><span class="si">{</span><span class="n">radius</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Abstracción</span>
+<span class="k">class</span> <span class="nc">Shape</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drawing_api</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_drawing_api</span> <span class="o">=</span> <span class="n">drawing_api</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="c1"># Refinamiento de Abstracción</span>
+<span class="k">class</span> <span class="nc">CircleShape</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">drawing_api</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">drawing_api</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_radius</span> <span class="o">=</span> <span class="n">radius</span>
+
+    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_drawing_api</span><span class="o">.</span><span class="n">draw_circle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_radius</span><span class="p">)</span>
+
+<span class="c1"># Uso del patrón Bridge</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">shapes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">CircleShape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">DrawingAPI1</span><span class="p">()),</span>
+        <span class="n">CircleShape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">DrawingAPI2</span><span class="p">())</span>
+    <span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">shapes</span><span class="p">:</span>
+        <span class="n">shape</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>API1 drawing a circle at (1, 2) with radius 3
+API2 drawing a circle at (5, 7) with radius 11
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DrawingAPI</span></code> define la interfaz para la implementación de dibujo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DrawingAPI1</span></code> y <code class="docutils literal notranslate"><span class="pre">DrawingAPI2</span></code> son implementaciones concretas de la interfaz de dibujo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Shape</span></code> es la abstracción que define la interfaz de alto nivel para las formas geométricas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CircleShape</span></code> es una forma geométrica concreta que extiende la abstracción <code class="docutils literal notranslate"><span class="pre">Shape</span></code>.</p></li>
+<li><p>Al ejecutar el código, cada forma geométrica se dibuja utilizando la implementación de dibujo adecuada, independientemente del sistema operativo o la tecnología de dibujo utilizada.</p></li>
+</ul>
+<p>Este patrón permite que las clases de abstracción y las clases de implementación puedan variar y evolucionar de forma independiente, lo que facilita la extensión y el mantenimiento del sistema.</p>
+</section>
+<section id="composite">
+<h2><span class="section-number">3.3.3. </span>Composite<a class="headerlink" href="#composite" title="Link to this heading">#</a></h2>
+<p>El patrón <strong>Composite</strong> es un patrón de diseño estructural que permite tratar objetos individuales y composiciones de objetos de manera uniforme. Este patrón compone objetos en estructuras de árbol para representar jerarquías de parte-todo. Esto significa que los clientes pueden tratar tanto a los objetos compuestos como a los individuales de manera uniforme.</p>
+<p><img alt="composite" src="../../_images/composite.png" /></p>
+<p><strong>Estructura del Patrón Composite</strong>:</p>
+<ul class="simple">
+<li><p><strong>Componente:</strong> Define la interfaz común para todos los componentes, ya sean objetos individuales o compuestos.</p></li>
+<li><p><strong>Hoja (Leaf):</strong> Representa los objetos individuales en la composición. Implementa la interfaz del componente.</p></li>
+<li><p><strong>Composite:</strong> Es un objeto que contiene una colección de componentes. Implementa la interfaz del componente y define operaciones específicas para trabajar con sus hijos.</p></li>
+</ul>
+<p>Supongamos que queremos modelar una estructura de árbol para representar una empresa. Utilizaremos el patrón Composite para modelar departamentos y empleados de manera uniforme.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="c1"># Componente</span>
+<span class="k">class</span> <span class="nc">Component</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">show_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="c1"># Hoja (Leaf)</span>
+<span class="k">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">show_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+<span class="c1"># Composite</span>
+<span class="k">class</span> <span class="nc">Department</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">show_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">show_name</span><span class="p">())</span>
+        <span class="k">return</span> <span class="s1">&#39; -&gt; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+
+<span class="c1"># Uso del patrón Composite</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">marketing</span> <span class="o">=</span> <span class="n">Department</span><span class="p">(</span><span class="s2">&quot;Marketing&quot;</span><span class="p">)</span>
+    <span class="n">sales</span> <span class="o">=</span> <span class="n">Department</span><span class="p">(</span><span class="s2">&quot;Sales&quot;</span><span class="p">)</span>
+
+    <span class="n">marketing</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Employee</span><span class="p">(</span><span class="s2">&quot;John&quot;</span><span class="p">))</span>
+    <span class="n">marketing</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Employee</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">))</span>
+
+    <span class="n">sales</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Employee</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">))</span>
+    <span class="n">sales</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Employee</span><span class="p">(</span><span class="s2">&quot;Carol&quot;</span><span class="p">))</span>
+
+    <span class="n">company</span> <span class="o">=</span> <span class="n">Department</span><span class="p">(</span><span class="s2">&quot;Company&quot;</span><span class="p">)</span>
+    <span class="n">company</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">marketing</span><span class="p">)</span>
+    <span class="n">company</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sales</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">company</span><span class="o">.</span><span class="n">show_name</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Component</span></code> define la interfaz común para todos los componentes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Employee</span></code> es una hoja que representa a un empleado individual.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Department</span></code> es un composite que representa un departamento que puede contener empleados individuales o subdepartamentos.</p></li>
+<li><p>Al ejecutar el código, se imprime la estructura jerárquica de la empresa, mostrando los nombres de los departamentos y los empleados.</p></li>
+</ul>
+<p>Este patrón permite tratar tanto a los objetos compuestos como a los individuales de manera uniforme, lo que facilita la manipulación de estructuras jerárquicas de parte-todo.</p>
+</section>
+<section id="decorator">
+<h2><span class="section-number">3.3.4. </span>Decorator<a class="headerlink" href="#decorator" title="Link to this heading">#</a></h2>
+<p>El patrón <strong>Decorator</strong> es un patrón de diseño estructural que permite agregar funcionalidad adicional a objetos dinámicamente sin modificar su estructura básica. Este patrón se basa en la composición en lugar de la herencia, lo que significa que permite a los objetos agregar nuevas características al envolverlos con objetos decoradores.</p>
+<p><img alt="decorator" src="../../_images/decorator.png" /></p>
+<p><strong>Estructura del Patrón Decorator</strong>:</p>
+<ul class="simple">
+<li><p><strong>Componente:</strong> Define la interfaz común para los objetos que pueden tener responsabilidades adicionales agregadas dinámicamente.</p></li>
+<li><p><strong>Componente Concreto:</strong> Implementa la interfaz del componente y define el comportamiento básico.</p></li>
+<li><p><strong>Decorador:</strong> Es una clase abstracta que contiene una referencia a un objeto del mismo tipo que el componente. También implementa la interfaz del componente y redirige las llamadas al objeto envuelto.</p></li>
+<li><p><strong>Decorador Concreto:</strong> Agrega funcionalidad adicional al componente. Puede envolver otros decoradores para agregar múltiples capas de funcionalidad.</p></li>
+</ul>
+<p>Supongamos que tenemos una interfaz de <code class="docutils literal notranslate"><span class="pre">Coffee</span></code> y una implementación básica <code class="docutils literal notranslate"><span class="pre">SimpleCoffee</span></code>. Queremos agregar funcionalidades adicionales, como leche o crema, a nuestro café sin modificar la clase <code class="docutils literal notranslate"><span class="pre">SimpleCoffee</span></code>. Utilizaremos el patrón Decorator para lograr esto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="c1"># Componente</span>
+<span class="k">class</span> <span class="nc">Coffee</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_cost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="c1"># Componente Concreto</span>
+<span class="k">class</span> <span class="nc">SimpleCoffee</span><span class="p">(</span><span class="n">Coffee</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_cost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">10</span>
+
+    <span class="k">def</span> <span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Simple Coffee&quot;</span>
+
+<span class="c1"># Decorador</span>
+<span class="k">class</span> <span class="nc">CoffeeDecorator</span><span class="p">(</span><span class="n">Coffee</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">decorated_coffee</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decorated_coffee</span> <span class="o">=</span> <span class="n">decorated_coffee</span>
+
+    <span class="k">def</span> <span class="nf">get_cost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">decorated_coffee</span><span class="o">.</span><span class="n">get_cost</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">decorated_coffee</span><span class="o">.</span><span class="n">get_description</span><span class="p">()</span>
+
+<span class="c1"># Decorador Concreto</span>
+<span class="k">class</span> <span class="nc">Milk</span><span class="p">(</span><span class="n">CoffeeDecorator</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">decorated_coffee</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">decorated_coffee</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_cost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">decorated_coffee</span><span class="o">.</span><span class="n">get_cost</span><span class="p">()</span> <span class="o">+</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">decorated_coffee</span><span class="o">.</span><span class="n">get_description</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;, Milk&quot;</span>
+
+<span class="c1"># Decorador Concreto</span>
+<span class="k">class</span> <span class="nc">Cream</span><span class="p">(</span><span class="n">CoffeeDecorator</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">decorated_coffee</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">decorated_coffee</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_cost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">decorated_coffee</span><span class="o">.</span><span class="n">get_cost</span><span class="p">()</span> <span class="o">+</span> <span class="mi">5</span>
+
+    <span class="k">def</span> <span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">decorated_coffee</span><span class="o">.</span><span class="n">get_description</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;, Cream&quot;</span>
+
+<span class="c1"># Uso del patrón Decorator</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">coffee</span> <span class="o">=</span> <span class="n">SimpleCoffee</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Description:&quot;</span><span class="p">,</span> <span class="n">coffee</span><span class="o">.</span><span class="n">get_description</span><span class="p">(),</span> <span class="s2">&quot;Cost:&quot;</span><span class="p">,</span> <span class="n">coffee</span><span class="o">.</span><span class="n">get_cost</span><span class="p">())</span>
+
+    <span class="n">coffee_with_milk</span> <span class="o">=</span> <span class="n">Milk</span><span class="p">(</span><span class="n">coffee</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Description:&quot;</span><span class="p">,</span> <span class="n">coffee_with_milk</span><span class="o">.</span><span class="n">get_description</span><span class="p">(),</span> <span class="s2">&quot;Cost:&quot;</span><span class="p">,</span> <span class="n">coffee_with_milk</span><span class="o">.</span><span class="n">get_cost</span><span class="p">())</span>
+
+    <span class="n">coffee_with_cream</span> <span class="o">=</span> <span class="n">Cream</span><span class="p">(</span><span class="n">coffee</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Description:&quot;</span><span class="p">,</span> <span class="n">coffee_with_cream</span><span class="o">.</span><span class="n">get_description</span><span class="p">(),</span> <span class="s2">&quot;Cost:&quot;</span><span class="p">,</span> <span class="n">coffee_with_cream</span><span class="o">.</span><span class="n">get_cost</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Description: Simple Coffee Cost: 10
+Description: Simple Coffee, Milk Cost: 12
+Description: Simple Coffee, Cream Cost: 15
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Coffee</span></code> es la interfaz común para los diferentes tipos de café.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SimpleCoffee</span></code> es una implementación básica de <code class="docutils literal notranslate"><span class="pre">Coffee</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CoffeeDecorator</span></code> es la clase abstracta que define la estructura de los decoradores.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Milk</span></code> y <code class="docutils literal notranslate"><span class="pre">Cream</span></code> son decoradores concretos que agregan funcionalidad adicional a un objeto de café.</p></li>
+<li><p>Al ejecutar el código, se muestra cómo se puede agregar leche o crema a un café básico sin modificar la clase <code class="docutils literal notranslate"><span class="pre">SimpleCoffee</span></code>.</p></li>
+</ul>
+<p>El patrón Decorator permite agregar funcionalidades adicionales a los objetos existentes de forma dinámica y flexible, lo que hace que el código sea más modular y fácil de extender.</p>
+</section>
+<section id="facade">
+<h2><span class="section-number">3.3.5. </span>Facade<a class="headerlink" href="#facade" title="Link to this heading">#</a></h2>
+<p>El patrón <strong>Facade</strong> es un patrón de diseño estructural que proporciona una interfaz unificada para un conjunto de interfaces en un subsistema. Este patrón define una interfaz de nivel superior que facilita el uso de un sistema más grande o complejo, ocultando la complejidad del sistema y proporcionando una interfaz simplificada para interactuar con él.</p>
+<p><img alt="facade" src="../../_images/facade.png" /></p>
+<p><strong>Estructura del Patrón Facade</strong>:</p>
+<ul class="simple">
+<li><p><strong>Facade:</strong> Proporciona una interfaz unificada para un conjunto de interfaces en un subsistema. Conoce qué clases del subsistema son responsables de una solicitud específica y delega las solicitudes del cliente a estas clases.</p></li>
+<li><p><strong>Subsistema:</strong> Consiste en un conjunto de clases que implementan funcionalidades específicas del sistema.</p></li>
+</ul>
+<p>Supongamos que tenemos un sistema de computación que consta de varias partes, como el procesador, la memoria y la unidad de almacenamiento. Utilizaremos el patrón Facade para proporcionar una interfaz simplificada para encender y apagar la computadora.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Subsistema</span>
+<span class="k">class</span> <span class="nc">CPU</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">boot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CPU is booting&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CPU is shutting down&quot;</span><span class="p">)</span>
+
+<span class="c1"># Subsistema</span>
+<span class="k">class</span> <span class="nc">Memory</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Memory is loading&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">free</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Memory is free&quot;</span><span class="p">)</span>
+
+<span class="c1"># Subsistema</span>
+<span class="k">class</span> <span class="nc">Storage</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Storage is reading&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Storage is writing&quot;</span><span class="p">)</span>
+
+<span class="c1"># Facade</span>
+<span class="k">class</span> <span class="nc">ComputerFacade</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cpu</span> <span class="o">=</span> <span class="n">CPU</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">memory</span> <span class="o">=</span> <span class="n">Memory</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span> <span class="o">=</span> <span class="n">Storage</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">boot</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">free</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+
+<span class="c1"># Uso del patrón Facade</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">computer</span> <span class="o">=</span> <span class="n">ComputerFacade</span><span class="p">()</span>
+    <span class="n">computer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Computer is running...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">computer</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU is booting
+Memory is loading
+Storage is reading
+
+Computer is running...
+
+Storage is writing
+Memory is free
+CPU is shutting down
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CPU</span></code>, <code class="docutils literal notranslate"><span class="pre">Memory</span></code> y <code class="docutils literal notranslate"><span class="pre">Storage</span></code> son subsistemas que representan diferentes partes de la computadora.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ComputerFacade</span></code> es la fachada que proporciona una interfaz unificada para encender y apagar la computadora.</p></li>
+<li><p>Al ejecutar el código, la fachada <code class="docutils literal notranslate"><span class="pre">ComputerFacade</span></code> oculta la complejidad del encendido y apagado de la computadora al cliente, proporcionando una interfaz simple para interactuar con el sistema.</p></li>
+</ul>
+<p>El patrón Facade promueve la simplicidad y el desacoplamiento al proporcionar una interfaz simplificada para un sistema más grande o complejo. Esto facilita el uso y la comprensión del sistema por parte del cliente.</p>
+</section>
+<section id="flyweight">
+<h2><span class="section-number">3.3.6. </span>Flyweight<a class="headerlink" href="#flyweight" title="Link to this heading">#</a></h2>
+<p>El patrón <strong>Flyweight</strong> es un patrón de diseño estructural que se utiliza para minimizar el uso de memoria o el costo de la creación de objetos mediante el uso compartido de objetos similares. Este patrón se basa en el concepto de reutilización de objetos existentes en lugar de crear nuevos objetos, lo que ayuda a reducir el consumo de recursos y mejorar el rendimiento de la aplicación.</p>
+<p><img alt="flyweight" src="../../_images/flyweight.png" /></p>
+<p><strong>Estructura del Patrón Flyweight</strong>:</p>
+<ul class="simple">
+<li><p><strong>Flyweight:</strong> Define una interfaz mediante la cual los objetos flyweight pueden recibir y actuar sobre los datos compartidos. También almacena el estado intrínseco (compartido) de los objetos flyweight.</p></li>
+<li><p><strong>ConcreteFlyweight:</strong> Implementa la interfaz Flyweight y almacena el estado extrínseco (único) del objeto flyweight. El estado extrínseco no es compartido y debe ser proporcionado externamente.</p></li>
+<li><p><strong>FlyweightFactory:</strong> Crea y administra objetos flyweight. Almacena una pool de objetos flyweight y los proporciona a los clientes cuando se solicitan. Si un objeto flyweight ya existe en el pool, lo devuelve en lugar de crear uno nuevo.</p></li>
+</ul>
+<p>Supongamos que tenemos un sistema de procesamiento de texto donde necesitamos representar cada carácter del texto como un objeto flyweight para minimizar el uso de memoria. Utilizaremos el patrón Flyweight para lograr esto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Flyweight</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intrinsic_state</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intrinsic_state</span> <span class="o">=</span> <span class="n">intrinsic_state</span>
+
+    <span class="k">def</span> <span class="nf">operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extrinsic_state</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">ConcreteFlyweight</span><span class="p">(</span><span class="n">Flyweight</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extrinsic_state</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Operation with intrinsic state &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">intrinsic_state</span><span class="si">}</span><span class="s2">&#39; and extrinsic state &#39;</span><span class="si">{</span><span class="n">extrinsic_state</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">FlyweightFactory</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flyweights</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">get_flyweight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intrinsic_state</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">intrinsic_state</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">flyweights</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">flyweights</span><span class="p">[</span><span class="n">intrinsic_state</span><span class="p">]</span> <span class="o">=</span> <span class="n">ConcreteFlyweight</span><span class="p">(</span><span class="n">intrinsic_state</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">flyweights</span><span class="p">[</span><span class="n">intrinsic_state</span><span class="p">]</span>
+
+<span class="c1"># Uso del patrón Flyweight</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">factory</span> <span class="o">=</span> <span class="n">FlyweightFactory</span><span class="p">()</span>
+    <span class="n">flyweight1</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">get_flyweight</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+    <span class="n">flyweight2</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">get_flyweight</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+
+    <span class="n">flyweight3</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">get_flyweight</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">)</span>
+
+    <span class="n">flyweight1</span><span class="o">.</span><span class="n">operation</span><span class="p">(</span><span class="s2">&quot;State 1&quot;</span><span class="p">)</span>
+    <span class="n">flyweight2</span><span class="o">.</span><span class="n">operation</span><span class="p">(</span><span class="s2">&quot;State 2&quot;</span><span class="p">)</span>
+    <span class="n">flyweight3</span><span class="o">.</span><span class="n">operation</span><span class="p">(</span><span class="s2">&quot;State 3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operation with intrinsic state &#39;A&#39; and extrinsic state &#39;State 1&#39;
+Operation with intrinsic state &#39;A&#39; and extrinsic state &#39;State 2&#39;
+Operation with intrinsic state &#39;B&#39; and extrinsic state &#39;State 3&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Flyweight</span></code> define la interfaz para los objetos flyweight.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConcreteFlyweight</span></code> implementa la interfaz <code class="docutils literal notranslate"><span class="pre">Flyweight</span></code> y almacena el estado intrínseco.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FlyweightFactory</span></code> crea y administra objetos flyweight. Almacena una pool de objetos flyweight y los proporciona a los clientes cuando se solicitan.</p></li>
+</ul>
+<p>Al ejecutar el código, se puede ver que el objeto flyweight “A” se comparte entre <code class="docutils literal notranslate"><span class="pre">flyweight1</span></code> y <code class="docutils literal notranslate"><span class="pre">flyweight2</span></code>, mientras que el objeto flyweight “B” es único para <code class="docutils literal notranslate"><span class="pre">flyweight3</span></code>. Esto demuestra cómo el patrón Flyweight puede minimizar el uso de memoria mediante el uso compartido de objetos similares.</p>
+</section>
+<section id="proxy">
+<h2><span class="section-number">3.3.7. </span>Proxy<a class="headerlink" href="#proxy" title="Link to this heading">#</a></h2>
+<p>El patrón <strong>Proxy</strong> es un patrón de diseño estructural que proporciona un substituto o marcador de posición para otro objeto para controlar el acceso a ese objeto. El Proxy actúa como intermediario entre el cliente y el objeto real, permitiendo agregar funcionalidades adicionales como el control de acceso, la creación diferida, el almacenamiento en caché, etc.</p>
+<p><img alt="proxy" src="../../_images/proxy.png" /></p>
+<p><strong>Estructura del Patrón Proxy</strong>:</p>
+<ul class="simple">
+<li><p><strong>Sujeto (Subject):</strong> Define la interfaz común para el objeto real y el Proxy, de modo que el Proxy pueda ser utilizado en lugar del objeto real.</p></li>
+<li><p><strong>Proxy:</strong> Mantiene una referencia al objeto real y controla el acceso a él. Implementa la misma interfaz que el objeto real para que el cliente no sea consciente de que está utilizando un Proxy en lugar del objeto real.</p></li>
+<li><p><strong>Sujeto Real (Real Subject):</strong> Es el objeto real que el Proxy representa. El Proxy delega las solicitudes del cliente al Sujeto Real cuando sea necesario.</p></li>
+</ul>
+<p>Supongamos que tenemos una interfaz <code class="docutils literal notranslate"><span class="pre">Image</span></code> para cargar y mostrar imágenes. Queremos crear un Proxy para controlar el acceso a la carga de imágenes y mostrar un mensaje cuando se carga una imagen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="c1"># Sujeto</span>
+<span class="k">class</span> <span class="nc">Image</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="c1"># Sujeto Real</span>
+<span class="k">class</span> <span class="nc">RealImage</span><span class="p">(</span><span class="n">Image</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_from_disk</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">load_from_disk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loading&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Displaying&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+<span class="c1"># Proxy</span>
+<span class="k">class</span> <span class="nc">ProxyImage</span><span class="p">(</span><span class="n">Image</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">real_image</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">real_image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">real_image</span> <span class="o">=</span> <span class="n">RealImage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">real_image</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+
+<span class="c1"># Uso del patrón Proxy</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">image1</span> <span class="o">=</span> <span class="n">ProxyImage</span><span class="p">(</span><span class="s2">&quot;image1.jpg&quot;</span><span class="p">)</span>
+    <span class="n">image1</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>  <span class="c1"># RealImage será creado y cargado desde el disco</span>
+
+    <span class="n">image2</span> <span class="o">=</span> <span class="n">ProxyImage</span><span class="p">(</span><span class="s2">&quot;image2.jpg&quot;</span><span class="p">)</span>
+    <span class="n">image2</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>  <span class="c1"># RealImage será creado y cargado desde el disco</span>
+    <span class="n">image2</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>  <span class="c1"># No se volverá a cargar RealImage, ya que está en caché</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading image1.jpg
+Displaying image1.jpg
+Loading image2.jpg
+Displaying image2.jpg
+Displaying image2.jpg
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Image</span></code> es la interfaz común para la carga y visualización de imágenes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RealImage</span></code> es el Sujeto Real que carga la imagen desde el disco.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ProxyImage</span></code> es el Proxy que controla el acceso a la carga de imágenes. Cuando se llama al método <code class="docutils literal notranslate"><span class="pre">display()</span></code>, el Proxy carga la imagen solo cuando sea necesario.</p></li>
+</ul>
+<p>Al ejecutar el código, se puede observar que el Proxy carga la imagen real solo cuando se llama al método <code class="docutils literal notranslate"><span class="pre">display()</span></code>, lo que demuestra el control de acceso proporcionado por el patrón Proxy.</p>
+</section>
+<section id="otros-patrones">
+<h2><span class="section-number">3.3.8. </span>Otros patrones<a class="headerlink" href="#otros-patrones" title="Link to this heading">#</a></h2>
+<p><strong>Módulo:</strong></p>
+<p>El patrón Módulo organiza un conjunto de clases y objetos relacionados en una estructura unificada y modular.</p>
+<p><strong>Composite-View:</strong></p>
+<p>El patrón Composite-View proporciona una forma de tratar las estructuras jerárquicas de objetos como objetos individuales.</p>
+<p><strong>Private Class Data:</strong></p>
+<p>El patrón Private Class Data controla el acceso a los datos de clase mediante la encapsulación de los datos dentro de un objeto de datos privado.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs/patterns"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="creacionales.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3.2. </span>Patrones de creación</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="comportamiento.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.4. </span>Patrones de comportamiento</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adapter">3.3.1. Adapter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bridge">3.3.2. Bridge</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#composite">3.3.3. Composite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decorator">3.3.4. Decorator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#facade">3.3.5. Facade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flyweight">3.3.6. Flyweight</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proxy">3.3.7. Proxy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-patrones">3.3.8. Otros patrones</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Francisco Alfaro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
