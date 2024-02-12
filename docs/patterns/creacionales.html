@@ -70,6 +70,8 @@
                 gtag('config', 'G-TB617QHPDG');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/patterns/creacionales';</script>
     <link rel="icon" href="../../_static/icon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -402,8 +404,16 @@ document.write(`
 <section id="singleton">
 <h2><span class="section-number">3.2.1. </span>Singleton<a class="headerlink" href="#singleton" title="Link to this heading">#</a></h2>
 <p>El patrón <strong>Singleton</strong> garantiza que una clase solo tenga una instancia y proporciona un punto de acceso global a esa instancia. Es útil cuando solo se requiere una instancia de una clase para gestionar recursos compartidos.</p>
-<p><img alt="singleton" src="../../_images/singleton.png" /></p>
-<div class="cell docutils container">
+<div class="mermaid">
+            classDiagram
+    class Singleton {
+        - _instance: Singleton
+        + __new__(cls)
+    }
+
+    Singleton --o _instance
+
+        </div><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Singleton</span><span class="p">:</span>
     <span class="n">_instance</span> <span class="o">=</span> <span class="kc">None</span>
@@ -443,8 +453,24 @@ document.write(`
 <section id="prototype">
 <h2><span class="section-number">3.2.2. </span>Prototype<a class="headerlink" href="#prototype" title="Link to this heading">#</a></h2>
 <p>El patrón <strong>Prototype</strong> se utiliza para crear nuevos objetos copiando un prototipo existente en lugar de crear un objeto desde cero. Esto es útil cuando la creación de un objeto es costosa en términos de recursos o tiempo.</p>
-<p><img alt="prototype" src="../../_images/prototype.png" /></p>
-<div class="cell docutils container">
+<div class="mermaid">
+            classDiagram
+    class Prototype {
+        - _objects: dict
+        + __init__()
+        + register_object(name, obj)
+        + unregister_object(name)
+        + clone(name, **attrs)
+    }
+    class Car {
+        - make: str
+        - model: str
+        + __init__()
+        + __str__()
+    }
+
+    Prototype &quot;1&quot; -- &quot;0..*&quot; Car
+        </div><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span>
 
@@ -536,8 +562,39 @@ document.write(`
 <section id="factory-method">
 <h2><span class="section-number">3.2.3. </span>Factory Method<a class="headerlink" href="#factory-method" title="Link to this heading">#</a></h2>
 <p>El patrón <strong>Factory Method</strong> es un patrón de diseño creacional que proporciona una interfaz para crear objetos en una clase base, pero permite a las subclases alterar el tipo de objetos que se crean.</p>
-<p><img alt="factory method" src="../../_images/factorymethod.png" /></p>
-<div class="cell docutils container">
+<div class="mermaid">
+            classDiagram
+    class Product {
+        + operation(): str
+    }
+
+    class Creator {
+        + factory_method(): Product
+        + some_operation(): str
+    }
+
+    class ConcreteProduct1 {
+        + operation(): str
+    }
+
+    class ConcreteProduct2 {
+        + operation(): str
+    }
+
+    class ConcreteCreator1 {
+        + factory_method(): Product
+    }
+
+    class ConcreteCreator2 {
+        + factory_method(): Product
+    }
+
+    Product &lt;|-- ConcreteProduct1
+    Product &lt;|-- ConcreteProduct2
+    Creator &lt;|-- ConcreteCreator1
+    Creator &lt;|-- ConcreteCreator2
+
+        </div><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
 

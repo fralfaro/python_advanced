@@ -70,6 +70,8 @@
                 gtag('config', 'G-TB617QHPDG');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/patterns/estructurales';</script>
     <link rel="icon" href="../../_static/icon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -406,8 +408,34 @@ document.write(`
 <section id="adapter">
 <h2><span class="section-number">3.3.1. </span>Adapter<a class="headerlink" href="#adapter" title="Link to this heading">#</a></h2>
 <p>El patrón <strong>Adapter</strong> es un patrón de diseño estructural que permite que interfaces incompatibles trabajen juntas. Este patrón convierte la interfaz de una clase en otra interfaz que un cliente espera, permitiendo que objetos con interfaces incompatibles puedan colaborar entre sí.</p>
-<p><img alt="adapter" src="../../_images/adapter.png" /></p>
-<p><strong>Estructura del Patrón Adapter</strong>:</p>
+<div class="mermaid">
+            classDiagram
+    class BookViewer {
+        + display_info()
+    }
+
+    class Book {
+        - title: str
+        - author: str
+        + __init__(title, author)
+        + get_title(): str
+        + get_author(): str
+    }
+
+    class BookAdapter {
+        - book: Book
+        + __init__(book)
+        + display_info()
+    }
+
+    class App {
+        - book_viewer: BookViewer
+        + __init__(book_viewer)
+        + display_book_info()
+    }
+
+    BookViewer &lt;|-- BookAdapter
+        </div><p><strong>Estructura del Patrón Adapter</strong>:</p>
 <ul class="simple">
 <li><p><strong>Cliente:</strong> Es la clase que interactúa con el Adaptador para utilizar los servicios proporcionados por el Adaptee.</p></li>
 <li><p><strong>Target:</strong> Define la interfaz específica que utiliza el Cliente.</p></li>
@@ -486,8 +514,39 @@ Author: J.R.R. Tolkien
 <section id="bridge">
 <h2><span class="section-number">3.3.2. </span>Bridge<a class="headerlink" href="#bridge" title="Link to this heading">#</a></h2>
 <p>El patrón <strong>Bridge</strong> es un patrón de diseño estructural que separa la abstracción de su implementación, permitiendo que ambas puedan variar de forma independiente. Este patrón se utiliza cuando se necesita evitar una unión fija entre la abstracción y su implementación, lo que permite que ambos puedan cambiar y evolucionar de forma independiente sin necesidad de modificar el otro.</p>
-<p><img alt="bridge" src="../../_images/bridge.png" /></p>
-<p><strong>Estructura del Patrón Bridge</strong>:</p>
+<div class="mermaid">
+            classDiagram
+    class DrawingAPI {
+        + draw_circle(x, y, radius)
+    }
+
+    class DrawingAPI1 {
+        + draw_circle(x, y, radius)
+    }
+
+    class DrawingAPI2 {
+        + draw_circle(x, y, radius)
+    }
+
+    class Shape {
+        - _drawing_api: DrawingAPI
+        + __init__(drawing_api)
+        + draw()
+    }
+
+    class CircleShape {
+        - _x: int
+        - _y: int
+        - _radius: int
+        + __init__(x, y, radius, drawing_api)
+        + draw()
+    }
+
+    DrawingAPI &lt;|-- DrawingAPI1
+    DrawingAPI &lt;|-- DrawingAPI2
+    Shape o-- DrawingAPI
+    CircleShape --|&gt; Shape
+        </div><p><strong>Estructura del Patrón Bridge</strong>:</p>
 <ul class="simple">
 <li><p><strong>Abstracción:</strong> Define la interfaz de alto nivel que el cliente utiliza para interactuar con el sistema. Mantiene una referencia a un objeto de Implementación.</p></li>
 <li><p><strong>Implementación:</strong> Define la interfaz de bajo nivel que define las operaciones concretas que se pueden realizar. Puede haber múltiples implementaciones, y la abstracción se refiere a una de ellas.</p></li>
@@ -571,8 +630,30 @@ API2 drawing a circle at (5, 7) with radius 11
 <section id="composite">
 <h2><span class="section-number">3.3.3. </span>Composite<a class="headerlink" href="#composite" title="Link to this heading">#</a></h2>
 <p>El patrón <strong>Composite</strong> es un patrón de diseño estructural que permite tratar objetos individuales y composiciones de objetos de manera uniforme. Este patrón compone objetos en estructuras de árbol para representar jerarquías de parte-todo. Esto significa que los clientes pueden tratar tanto a los objetos compuestos como a los individuales de manera uniforme.</p>
-<p><img alt="composite" src="../../_images/composite.png" /></p>
-<p><strong>Estructura del Patrón Composite</strong>:</p>
+<div class="mermaid">
+            classDiagram
+    class Component {
+        + show_name()
+    }
+
+    class Employee {
+        - name: str
+        + __init__(name)
+        + show_name()
+    }
+
+    class Department {
+        - name: str
+        - children: list
+        + __init__(name)
+        + add(component)
+        + remove(component)
+        + show_name()
+    }
+
+    Component &lt;|-- Employee
+    Component &lt;|-- Department
+        </div><p><strong>Estructura del Patrón Composite</strong>:</p>
 <ul class="simple">
 <li><p><strong>Componente:</strong> Define la interfaz común para todos los componentes, ya sean objetos individuales o compuestos.</p></li>
 <li><p><strong>Hoja (Leaf):</strong> Representa los objetos individuales en la composición. Implementa la interfaz del componente.</p></li>
@@ -656,8 +737,43 @@ API2 drawing a circle at (5, 7) with radius 11
 <section id="decorator">
 <h2><span class="section-number">3.3.4. </span>Decorator<a class="headerlink" href="#decorator" title="Link to this heading">#</a></h2>
 <p>El patrón <strong>Decorator</strong> es un patrón de diseño estructural que permite agregar funcionalidad adicional a objetos dinámicamente sin modificar su estructura básica. Este patrón se basa en la composición en lugar de la herencia, lo que significa que permite a los objetos agregar nuevas características al envolverlos con objetos decoradores.</p>
-<p><img alt="decorator" src="../../_images/decorator.png" /></p>
-<p><strong>Estructura del Patrón Decorator</strong>:</p>
+<div class="mermaid">
+            classDiagram
+    class Coffee {
+        + get_cost()
+        + get_description()
+    }
+
+    class SimpleCoffee {
+        + get_cost()
+        + get_description()
+    }
+
+    class CoffeeDecorator {
+        - decorated_coffee: Coffee
+        + __init__(decorated_coffee)
+        + get_cost()
+        + get_description()
+    }
+
+    class Milk {
+        + __init__(decorated_coffee)
+        + get_cost()
+        + get_description()
+    }
+
+    class Cream {
+        + __init__(decorated_coffee)
+        + get_cost()
+        + get_description()
+    }
+
+    Coffee &lt;|-- SimpleCoffee
+    Coffee &lt;|-- CoffeeDecorator
+    CoffeeDecorator &lt;-- Milk
+    CoffeeDecorator &lt;-- Cream
+
+        </div><p><strong>Estructura del Patrón Decorator</strong>:</p>
 <ul class="simple">
 <li><p><strong>Componente:</strong> Define la interfaz común para los objetos que pueden tener responsabilidades adicionales agregadas dinámicamente.</p></li>
 <li><p><strong>Componente Concreto:</strong> Implementa la interfaz del componente y define el comportamiento básico.</p></li>
@@ -758,8 +874,36 @@ Description: Simple Coffee, Cream Cost: 15
 <section id="facade">
 <h2><span class="section-number">3.3.5. </span>Facade<a class="headerlink" href="#facade" title="Link to this heading">#</a></h2>
 <p>El patrón <strong>Facade</strong> es un patrón de diseño estructural que proporciona una interfaz unificada para un conjunto de interfaces en un subsistema. Este patrón define una interfaz de nivel superior que facilita el uso de un sistema más grande o complejo, ocultando la complejidad del sistema y proporcionando una interfaz simplificada para interactuar con él.</p>
-<p><img alt="facade" src="../../_images/facade.png" /></p>
-<p><strong>Estructura del Patrón Facade</strong>:</p>
+<div class="mermaid">
+            classDiagram
+    class CPU {
+        + boot()
+        + shutdown()
+    }
+
+    class Memory {
+        + load()
+        + free()
+    }
+
+    class Storage {
+        + read()
+        + write()
+    }
+
+    class ComputerFacade {
+        - cpu: CPU
+        - memory: Memory
+        - storage: Storage
+        + __init__()
+        + start()
+        + shutdown()
+    }
+
+    ComputerFacade --&gt; CPU
+    ComputerFacade --&gt; Memory
+    ComputerFacade --&gt; Storage
+        </div><p><strong>Estructura del Patrón Facade</strong>:</p>
 <ul class="simple">
 <li><p><strong>Facade:</strong> Proporciona una interfaz unificada para un conjunto de interfaces en un subsistema. Conoce qué clases del subsistema son responsables de una solicitud específica y delega las solicitudes del cliente a estas clases.</p></li>
 <li><p><strong>Subsistema:</strong> Consiste en un conjunto de clases que implementan funcionalidades específicas del sistema.</p></li>
@@ -846,8 +990,27 @@ CPU is shutting down
 <section id="flyweight">
 <h2><span class="section-number">3.3.6. </span>Flyweight<a class="headerlink" href="#flyweight" title="Link to this heading">#</a></h2>
 <p>El patrón <strong>Flyweight</strong> es un patrón de diseño estructural que se utiliza para minimizar el uso de memoria o el costo de la creación de objetos mediante el uso compartido de objetos similares. Este patrón se basa en el concepto de reutilización de objetos existentes en lugar de crear nuevos objetos, lo que ayuda a reducir el consumo de recursos y mejorar el rendimiento de la aplicación.</p>
-<p><img alt="flyweight" src="../../_images/flyweight.png" /></p>
-<p><strong>Estructura del Patrón Flyweight</strong>:</p>
+<div class="mermaid">
+            classDiagram
+    class Flyweight {
+        - intrinsic_state: any
+        + __init__(intrinsic_state)
+        + operation(extrinsic_state)
+    }
+
+    class ConcreteFlyweight {
+        + operation(extrinsic_state)
+    }
+
+    class FlyweightFactory {
+        - flyweights: dict
+        + __init__()
+        + get_flyweight(intrinsic_state)
+    }
+
+    Flyweight &lt;|-- ConcreteFlyweight
+    FlyweightFactory o-- Flyweight
+        </div><p><strong>Estructura del Patrón Flyweight</strong>:</p>
 <ul class="simple">
 <li><p><strong>Flyweight:</strong> Define una interfaz mediante la cual los objetos flyweight pueden recibir y actuar sobre los datos compartidos. También almacena el estado intrínseco (compartido) de los objetos flyweight.</p></li>
 <li><p><strong>ConcreteFlyweight:</strong> Implementa la interfaz Flyweight y almacena el estado extrínseco (único) del objeto flyweight. El estado extrínseco no es compartido y debe ser proporcionado externamente.</p></li>
@@ -913,8 +1076,29 @@ Operation with intrinsic state &#39;B&#39; and extrinsic state &#39;State 3&#39;
 <section id="proxy">
 <h2><span class="section-number">3.3.7. </span>Proxy<a class="headerlink" href="#proxy" title="Link to this heading">#</a></h2>
 <p>El patrón <strong>Proxy</strong> es un patrón de diseño estructural que proporciona un substituto o marcador de posición para otro objeto para controlar el acceso a ese objeto. El Proxy actúa como intermediario entre el cliente y el objeto real, permitiendo agregar funcionalidades adicionales como el control de acceso, la creación diferida, el almacenamiento en caché, etc.</p>
-<p><img alt="proxy" src="../../_images/proxy.png" /></p>
-<p><strong>Estructura del Patrón Proxy</strong>:</p>
+<div class="mermaid">
+            classDiagram
+    class Image {
+        + display()
+    }
+
+    class RealImage {
+        - filename: str
+        - load_from_disk()
+        + __init__(filename)
+        + display()
+    }
+
+    class ProxyImage {
+        - filename: str
+        - real_image: RealImage
+        + __init__(filename)
+        + display()
+    }
+
+    Image &lt;|-- RealImage
+    Image &lt;|-- ProxyImage
+        </div><p><strong>Estructura del Patrón Proxy</strong>:</p>
 <ul class="simple">
 <li><p><strong>Sujeto (Subject):</strong> Define la interfaz común para el objeto real y el Proxy, de modo que el Proxy pueda ser utilizado en lugar del objeto real.</p></li>
 <li><p><strong>Proxy:</strong> Mantiene una referencia al objeto real y controla el acceso a él. Implementa la misma interfaz que el objeto real para que el cliente no sea consciente de que está utilizando un Proxy en lugar del objeto real.</p></li>

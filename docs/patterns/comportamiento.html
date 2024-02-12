@@ -70,6 +70,8 @@
                 gtag('config', 'G-TB617QHPDG');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/patterns/comportamiento';</script>
     <link rel="icon" href="../../_static/icon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -401,8 +403,30 @@ document.write(`
 <section id="chain-of-responsibility">
 <h2><span class="section-number">3.4.1. </span>Chain of Responsibility<a class="headerlink" href="#chain-of-responsibility" title="Link to this heading">#</a></h2>
 <p>El patrón <strong>Chain of Responsibility</strong> es un patrón de diseño comportamental que se utiliza para evitar acoplar el remitente de una solicitud con su receptor al dar a más de un objeto la oportunidad de manejar la solicitud. El patrón consiste en una cadena de objetos receptores (o manejadores) y un único objeto remitente. Cada objeto receptor contiene una referencia al siguiente objeto en la cadena. Si un objeto no puede manejar la solicitud, la pasa al siguiente objeto en la cadena.</p>
-<p><img alt="chain of responsibility" src="../../_images/chainofresponsibility.png" /></p>
-<div class="cell docutils container">
+<div class="mermaid">
+            classDiagram
+    class Handler {
+        + set_next(handler)
+        + handle(request)
+    }
+
+    class ConcreteHandler1 {
+        - _next_handler: Handler
+        + __init__()
+        + set_next(handler)
+        + handle(request)
+    }
+
+    class ConcreteHandler2 {
+        - _next_handler: Handler
+        + __init__()
+        + set_next(handler)
+        + handle(request)
+    }
+
+    Handler &lt;|-- ConcreteHandler1
+    Handler &lt;|-- ConcreteHandler2
+        </div><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
 
@@ -484,8 +508,31 @@ ConcreteHandler2: Cannot handle request3
 <section id="command">
 <h2><span class="section-number">3.4.2. </span>Command<a class="headerlink" href="#command" title="Link to this heading">#</a></h2>
 <p>El patrón <strong>Command</strong> es un patrón de diseño comportamental que encapsula una solicitud como un objeto, permitiendo así parametrizar clientes con solicitudes, encolar solicitudes, y realizar operaciones reversibles. Este patrón desacopla el objeto que realiza la solicitud (cliente) del objeto que sabe cómo realizar la solicitud (invocador), permitiendo mayor flexibilidad en el diseño del sistema.</p>
-<p><img alt="command" src="../../_images/command.png" /></p>
-<div class="cell docutils container">
+<div class="mermaid">
+            classDiagram
+    class Command {
+        + execute()
+    }
+
+    class LightOnCommand {
+        - _light: Light
+        + __init__(light)
+        + execute()
+    }
+
+    class Light {
+        + turn_on()
+    }
+
+    class RemoteControl {
+        - _command: Command
+        + __init__()
+        + set_command(command)
+        + press_button()
+    }
+
+    Command &lt;|-- LightOnCommand
+        </div><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
 
@@ -554,8 +601,44 @@ ConcreteHandler2: Cannot handle request3
 <section id="interpreter">
 <h2><span class="section-number">3.4.3. </span>Interpreter<a class="headerlink" href="#interpreter" title="Link to this heading">#</a></h2>
 <p>El patrón <strong>Interpreter</strong> es un patrón de diseño comportamental que se utiliza para interpretar un lenguaje, proporcionando una manera de evaluar el lenguaje de expresión gramatical o sintácticamente. Este patrón define una gramática para un lenguaje y proporciona un intérprete para interpretar sentencias en ese lenguaje.</p>
-<p><img alt="interpreter" src="../../_images/interpreter.png" /></p>
-<div class="cell docutils container">
+<div class="mermaid">
+            classDiagram
+    class Context {
+        - _variables: dict
+        + __init__()
+        + set_variable(variable, value)
+        + get_variable(variable)
+    }
+
+    class Expression {
+        + interpret(context)
+    }
+
+    class NumberExpression {
+        - _value: int
+        + __init__(value)
+        + interpret(context)
+    }
+
+    class AddExpression {
+        - _left: Expression
+        - _right: Expression
+        + __init__(left, right)
+        + interpret(context)
+    }
+
+    class SubtractExpression {
+        - _left: Expression
+        - _right: Expression
+        + __init__(left, right)
+        + interpret(context)
+    }
+
+    Context o-- Expression
+    Expression &lt;|-- NumberExpression
+    Expression &lt;|-- AddExpression
+    Expression &lt;|-- SubtractExpression
+        </div><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
 
