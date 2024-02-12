@@ -453,8 +453,13 @@ document.write(`
 
     <span class="k">def</span> <span class="nf">display_book_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">book_viewer</span><span class="o">.</span><span class="n">display_info</span><span class="p">()</span>
-
-<span class="c1"># Uso del patrón Adapter</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso del patrón Adapter</span>
 <span class="n">book</span> <span class="o">=</span> <span class="n">Book</span><span class="p">(</span><span class="s2">&quot;The Hobbit&quot;</span><span class="p">,</span> <span class="s2">&quot;J.R.R. Tolkien&quot;</span><span class="p">)</span>
 <span class="n">adapter</span> <span class="o">=</span> <span class="n">BookAdapter</span><span class="p">(</span><span class="n">book</span><span class="p">)</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">App</span><span class="p">(</span><span class="n">adapter</span><span class="p">)</span>
@@ -529,16 +534,20 @@ Author: J.R.R. Tolkien
 
     <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_drawing_api</span><span class="o">.</span><span class="n">draw_circle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_radius</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso del patrón Bridge</span>
+<span class="n">shapes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">CircleShape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">DrawingAPI1</span><span class="p">()),</span>
+    <span class="n">CircleShape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">DrawingAPI2</span><span class="p">())</span>
+<span class="p">]</span>
 
-<span class="c1"># Uso del patrón Bridge</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">shapes</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">CircleShape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">DrawingAPI1</span><span class="p">()),</span>
-        <span class="n">CircleShape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">DrawingAPI2</span><span class="p">())</span>
-    <span class="p">]</span>
-
-    <span class="k">for</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">shapes</span><span class="p">:</span>
-        <span class="n">shape</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">shapes</span><span class="p">:</span>
+    <span class="n">shape</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -605,23 +614,32 @@ API2 drawing a circle at (5, 7) with radius 11
         <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
             <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">show_name</span><span class="p">())</span>
         <span class="k">return</span> <span class="s1">&#39; -&gt; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso del patrón Composite</span>
+<span class="n">marketing</span> <span class="o">=</span> <span class="n">Department</span><span class="p">(</span><span class="s2">&quot;Marketing&quot;</span><span class="p">)</span>
+<span class="n">sales</span> <span class="o">=</span> <span class="n">Department</span><span class="p">(</span><span class="s2">&quot;Sales&quot;</span><span class="p">)</span>
 
-<span class="c1"># Uso del patrón Composite</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">marketing</span> <span class="o">=</span> <span class="n">Department</span><span class="p">(</span><span class="s2">&quot;Marketing&quot;</span><span class="p">)</span>
-    <span class="n">sales</span> <span class="o">=</span> <span class="n">Department</span><span class="p">(</span><span class="s2">&quot;Sales&quot;</span><span class="p">)</span>
+<span class="n">marketing</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Employee</span><span class="p">(</span><span class="s2">&quot;John&quot;</span><span class="p">))</span>
+<span class="n">marketing</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Employee</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">))</span>
 
-    <span class="n">marketing</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Employee</span><span class="p">(</span><span class="s2">&quot;John&quot;</span><span class="p">))</span>
-    <span class="n">marketing</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Employee</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">))</span>
+<span class="n">sales</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Employee</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">))</span>
+<span class="n">sales</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Employee</span><span class="p">(</span><span class="s2">&quot;Carol&quot;</span><span class="p">))</span>
 
-    <span class="n">sales</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Employee</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">))</span>
-    <span class="n">sales</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Employee</span><span class="p">(</span><span class="s2">&quot;Carol&quot;</span><span class="p">))</span>
+<span class="n">company</span> <span class="o">=</span> <span class="n">Department</span><span class="p">(</span><span class="s2">&quot;Company&quot;</span><span class="p">)</span>
+<span class="n">company</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">marketing</span><span class="p">)</span>
+<span class="n">company</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sales</span><span class="p">)</span>
 
-    <span class="n">company</span> <span class="o">=</span> <span class="n">Department</span><span class="p">(</span><span class="s2">&quot;Company&quot;</span><span class="p">)</span>
-    <span class="n">company</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">marketing</span><span class="p">)</span>
-    <span class="n">company</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sales</span><span class="p">)</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="n">company</span><span class="o">.</span><span class="n">show_name</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">company</span><span class="o">.</span><span class="n">show_name</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Company -&gt; Marketing -&gt; John -&gt; Alice -&gt; Sales -&gt; Bob -&gt; Carol
 </pre></div>
 </div>
 </div>
@@ -701,17 +719,21 @@ API2 drawing a circle at (5, 7) with radius 11
 
     <span class="k">def</span> <span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">decorated_coffee</span><span class="o">.</span><span class="n">get_description</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;, Cream&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso del patrón Decorator</span>
+<span class="n">coffee</span> <span class="o">=</span> <span class="n">SimpleCoffee</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Description:&quot;</span><span class="p">,</span> <span class="n">coffee</span><span class="o">.</span><span class="n">get_description</span><span class="p">(),</span> <span class="s2">&quot;Cost:&quot;</span><span class="p">,</span> <span class="n">coffee</span><span class="o">.</span><span class="n">get_cost</span><span class="p">())</span>
 
-<span class="c1"># Uso del patrón Decorator</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">coffee</span> <span class="o">=</span> <span class="n">SimpleCoffee</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Description:&quot;</span><span class="p">,</span> <span class="n">coffee</span><span class="o">.</span><span class="n">get_description</span><span class="p">(),</span> <span class="s2">&quot;Cost:&quot;</span><span class="p">,</span> <span class="n">coffee</span><span class="o">.</span><span class="n">get_cost</span><span class="p">())</span>
+<span class="n">coffee_with_milk</span> <span class="o">=</span> <span class="n">Milk</span><span class="p">(</span><span class="n">coffee</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Description:&quot;</span><span class="p">,</span> <span class="n">coffee_with_milk</span><span class="o">.</span><span class="n">get_description</span><span class="p">(),</span> <span class="s2">&quot;Cost:&quot;</span><span class="p">,</span> <span class="n">coffee_with_milk</span><span class="o">.</span><span class="n">get_cost</span><span class="p">())</span>
 
-    <span class="n">coffee_with_milk</span> <span class="o">=</span> <span class="n">Milk</span><span class="p">(</span><span class="n">coffee</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Description:&quot;</span><span class="p">,</span> <span class="n">coffee_with_milk</span><span class="o">.</span><span class="n">get_description</span><span class="p">(),</span> <span class="s2">&quot;Cost:&quot;</span><span class="p">,</span> <span class="n">coffee_with_milk</span><span class="o">.</span><span class="n">get_cost</span><span class="p">())</span>
-
-    <span class="n">coffee_with_cream</span> <span class="o">=</span> <span class="n">Cream</span><span class="p">(</span><span class="n">coffee</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Description:&quot;</span><span class="p">,</span> <span class="n">coffee_with_cream</span><span class="o">.</span><span class="n">get_description</span><span class="p">(),</span> <span class="s2">&quot;Cost:&quot;</span><span class="p">,</span> <span class="n">coffee_with_cream</span><span class="o">.</span><span class="n">get_cost</span><span class="p">())</span>
+<span class="n">coffee_with_cream</span> <span class="o">=</span> <span class="n">Cream</span><span class="p">(</span><span class="n">coffee</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Description:&quot;</span><span class="p">,</span> <span class="n">coffee_with_cream</span><span class="o">.</span><span class="n">get_description</span><span class="p">(),</span> <span class="s2">&quot;Cost:&quot;</span><span class="p">,</span> <span class="n">coffee_with_cream</span><span class="o">.</span><span class="n">get_cost</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -785,13 +807,17 @@ Description: Simple Coffee, Cream Cost: 15
         <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">free</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
-
-<span class="c1"># Uso del patrón Facade</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">computer</span> <span class="o">=</span> <span class="n">ComputerFacade</span><span class="p">()</span>
-    <span class="n">computer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Computer is running...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">computer</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso del patrón Facade</span>
+<span class="n">computer</span> <span class="o">=</span> <span class="n">ComputerFacade</span><span class="p">()</span>
+<span class="n">computer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Computer is running...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">computer</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -849,18 +875,22 @@ CPU is shutting down
         <span class="k">if</span> <span class="n">intrinsic_state</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">flyweights</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">flyweights</span><span class="p">[</span><span class="n">intrinsic_state</span><span class="p">]</span> <span class="o">=</span> <span class="n">ConcreteFlyweight</span><span class="p">(</span><span class="n">intrinsic_state</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">flyweights</span><span class="p">[</span><span class="n">intrinsic_state</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso del patrón Flyweight</span>
+<span class="n">factory</span> <span class="o">=</span> <span class="n">FlyweightFactory</span><span class="p">()</span>
+<span class="n">flyweight1</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">get_flyweight</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="n">flyweight2</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">get_flyweight</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
 
-<span class="c1"># Uso del patrón Flyweight</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">factory</span> <span class="o">=</span> <span class="n">FlyweightFactory</span><span class="p">()</span>
-    <span class="n">flyweight1</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">get_flyweight</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
-    <span class="n">flyweight2</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">get_flyweight</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="n">flyweight3</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">get_flyweight</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">)</span>
 
-    <span class="n">flyweight3</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">get_flyweight</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">)</span>
-
-    <span class="n">flyweight1</span><span class="o">.</span><span class="n">operation</span><span class="p">(</span><span class="s2">&quot;State 1&quot;</span><span class="p">)</span>
-    <span class="n">flyweight2</span><span class="o">.</span><span class="n">operation</span><span class="p">(</span><span class="s2">&quot;State 2&quot;</span><span class="p">)</span>
-    <span class="n">flyweight3</span><span class="o">.</span><span class="n">operation</span><span class="p">(</span><span class="s2">&quot;State 3&quot;</span><span class="p">)</span>
+<span class="n">flyweight1</span><span class="o">.</span><span class="n">operation</span><span class="p">(</span><span class="s2">&quot;State 1&quot;</span><span class="p">)</span>
+<span class="n">flyweight2</span><span class="o">.</span><span class="n">operation</span><span class="p">(</span><span class="s2">&quot;State 2&quot;</span><span class="p">)</span>
+<span class="n">flyweight3</span><span class="o">.</span><span class="n">operation</span><span class="p">(</span><span class="s2">&quot;State 3&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -923,15 +953,19 @@ Operation with intrinsic state &#39;B&#39; and extrinsic state &#39;State 3&#39;
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">real_image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">real_image</span> <span class="o">=</span> <span class="n">RealImage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">real_image</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso del patrón Proxy</span>
+<span class="n">image1</span> <span class="o">=</span> <span class="n">ProxyImage</span><span class="p">(</span><span class="s2">&quot;image1.jpg&quot;</span><span class="p">)</span>
+<span class="n">image1</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>  <span class="c1"># RealImage será creado y cargado desde el disco</span>
 
-<span class="c1"># Uso del patrón Proxy</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">image1</span> <span class="o">=</span> <span class="n">ProxyImage</span><span class="p">(</span><span class="s2">&quot;image1.jpg&quot;</span><span class="p">)</span>
-    <span class="n">image1</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>  <span class="c1"># RealImage será creado y cargado desde el disco</span>
-
-    <span class="n">image2</span> <span class="o">=</span> <span class="n">ProxyImage</span><span class="p">(</span><span class="s2">&quot;image2.jpg&quot;</span><span class="p">)</span>
-    <span class="n">image2</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>  <span class="c1"># RealImage será creado y cargado desde el disco</span>
-    <span class="n">image2</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>  <span class="c1"># No se volverá a cargar RealImage, ya que está en caché</span>
+<span class="n">image2</span> <span class="o">=</span> <span class="n">ProxyImage</span><span class="p">(</span><span class="s2">&quot;image2.jpg&quot;</span><span class="p">)</span>
+<span class="n">image2</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>  <span class="c1"># RealImage será creado y cargado desde el disco</span>
+<span class="n">image2</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>  <span class="c1"># No se volverá a cargar RealImage, ya que está en caché</span>
 </pre></div>
 </div>
 </div>

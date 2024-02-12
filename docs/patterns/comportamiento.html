@@ -444,8 +444,13 @@ document.write(`
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_handler</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;ConcreteHandler2: Cannot handle </span><span class="si">{</span><span class="n">request</span><span class="si">}</span><span class="s2">&quot;</span>
-
-<span class="c1"># Uso del patrón Chain of Responsibility</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso del patrón Chain of Responsibility</span>
 <span class="n">handler1</span> <span class="o">=</span> <span class="n">ConcreteHandler1</span><span class="p">()</span>
 <span class="n">handler2</span> <span class="o">=</span> <span class="n">ConcreteHandler2</span><span class="p">()</span>
 
@@ -514,15 +519,19 @@ ConcreteHandler2: Cannot handle request3
     <span class="k">def</span> <span class="nf">press_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_command</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_command</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cliente</span>
+<span class="n">light</span> <span class="o">=</span> <span class="n">Light</span><span class="p">()</span>
+<span class="n">light_on_command</span> <span class="o">=</span> <span class="n">LightOnCommand</span><span class="p">(</span><span class="n">light</span><span class="p">)</span>
 
-<span class="c1"># Cliente</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">light</span> <span class="o">=</span> <span class="n">Light</span><span class="p">()</span>
-    <span class="n">light_on_command</span> <span class="o">=</span> <span class="n">LightOnCommand</span><span class="p">(</span><span class="n">light</span><span class="p">)</span>
-
-    <span class="n">remote_control</span> <span class="o">=</span> <span class="n">RemoteControl</span><span class="p">()</span>
-    <span class="n">remote_control</span><span class="o">.</span><span class="n">set_command</span><span class="p">(</span><span class="n">light_on_command</span><span class="p">)</span>
-    <span class="n">remote_control</span><span class="o">.</span><span class="n">press_button</span><span class="p">()</span>  <span class="c1"># Salida: Light is turned on</span>
+<span class="n">remote_control</span> <span class="o">=</span> <span class="n">RemoteControl</span><span class="p">()</span>
+<span class="n">remote_control</span><span class="o">.</span><span class="n">set_command</span><span class="p">(</span><span class="n">light_on_command</span><span class="p">)</span>
+<span class="n">remote_control</span><span class="o">.</span><span class="n">press_button</span><span class="p">()</span>  <span class="c1"># Salida: Light is turned on</span>
 </pre></div>
 </div>
 </div>
@@ -592,22 +601,26 @@ ConcreteHandler2: Cannot handle request3
     
     <span class="k">def</span> <span class="nf">interpret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_left</span><span class="o">.</span><span class="n">interpret</span><span class="p">(</span><span class="n">context</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_right</span><span class="o">.</span><span class="n">interpret</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
-
-<span class="c1"># Uso del patrón Interpreter</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="c1"># Crear el contexto</span>
-    <span class="n">context</span> <span class="o">=</span> <span class="n">Context</span><span class="p">()</span>
-    <span class="n">context</span><span class="o">.</span><span class="n">set_variable</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-    <span class="n">context</span><span class="o">.</span><span class="n">set_variable</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso del patrón Interpreter</span>
+<span class="c1"># Crear el contexto</span>
+<span class="n">context</span> <span class="o">=</span> <span class="n">Context</span><span class="p">()</span>
+<span class="n">context</span><span class="o">.</span><span class="n">set_variable</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">set_variable</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
     
-    <span class="c1"># Crear las expresiones</span>
-    <span class="n">expression</span> <span class="o">=</span> <span class="n">AddExpression</span><span class="p">(</span><span class="n">NumberExpression</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)),</span> 
-                               <span class="n">SubtractExpression</span><span class="p">(</span><span class="n">NumberExpression</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)),</span> 
-                                                 <span class="n">NumberExpression</span><span class="p">(</span><span class="mi">3</span><span class="p">)))</span>
+<span class="c1"># Crear las expresiones</span>
+<span class="n">expression</span> <span class="o">=</span> <span class="n">AddExpression</span><span class="p">(</span><span class="n">NumberExpression</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)),</span> 
+                           <span class="n">SubtractExpression</span><span class="p">(</span><span class="n">NumberExpression</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)),</span> 
+                                             <span class="n">NumberExpression</span><span class="p">(</span><span class="mi">3</span><span class="p">)))</span>
     
-    <span class="c1"># Interpretar la expresión</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">expression</span><span class="o">.</span><span class="n">interpret</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>  <span class="c1"># Salida: 12</span>
+<span class="c1"># Interpretar la expresión</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">expression</span><span class="o">.</span><span class="n">interpret</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>  <span class="c1"># Salida: 12</span>
 </pre></div>
 </div>
 </div>
