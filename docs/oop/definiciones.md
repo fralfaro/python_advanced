@@ -1,4 +1,4 @@
-# Conceptos Claves 
+# Conceptos Claves
 
 ## Definiciones
 
@@ -37,8 +37,8 @@ Estos lenguajes ofrecen diferentes implementaciones y enfoques de la programaci�
 
 ## Historia
 
-La historia de la programación orientada a objetos (POO) 
-es fascinante y se remonta a varios hitos importantes 
+La historia de la programación orientada a objetos (POO)
+es fascinante y se remonta a varios hitos importantes
 en el desarrollo de la informática y la programación de computadoras.
 
 ```{figure} ../images/historia.png
@@ -55,7 +55,7 @@ Genealogía de lenguajes de programación
 - En las décadas de 1950 y 1960, la programación estaba dominada por lenguajes de programación procedimentales, como Fortran y COBOL.
 - A finales de la década de 1960 y principios de la década de 1970, surgieron enfoques estructurados y modulares para el desarrollo de software, promovidos por lenguajes como ALGOL y Pascal. Estos enfoques dividían los programas en módulos más pequeños y manejables.
 
-### Primeros conceptos 
+### Primeros conceptos
 
 - En la década de 1960, el lenguaje de programación Simula, desarrollado por Ole-Johan Dahl y Kristen Nygaard en Noruega, sentó las bases para la programación orientada a objetos.
 - Simula introdujo conceptos como clases, objetos, herencia y polimorfismo, permitiendo a los programadores modelar entidades del mundo real en sus programas de una manera más natural.
@@ -77,5 +77,3 @@ Genealogía de lenguajes de programación
 - En las décadas siguientes, la programación orientada a objetos se consolidó como uno de los principales paradigmas de desarrollo de software.
 - Lenguajes como Java y C# se convirtieron en pilares de la programación orientada a objetos en la industria del software.
 - La evolución de la tecnología, como la computación distribuida y la programación concurrente, ha llevado a la evolución de la POO con características adicionales para abordar estos nuevos desafíos.
-
-

@@ -1,4 +1,4 @@
-# Conceptos Claves 
+# Conceptos Claves
 
 ## Definiciones
 

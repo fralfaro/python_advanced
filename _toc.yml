@@ -28,5 +28,3 @@ parts:
         - file: docs/patterns/creacionales.ipynb
         - file: docs/patterns/estructurales.ipynb
         - file: docs/patterns/comportamiento.ipynb
-
-
