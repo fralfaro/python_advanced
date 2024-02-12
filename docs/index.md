@@ -1,10 +1,17 @@
-# Python Avanzado
+# Introducción a Python
 
-![example workflow](https://github.com/fralfaro/python_advanced/actions/workflows/documentation.yml/badge.svg)
-[![documentation](https://img.shields.io/badge/📖-docs-brightgreen)](https://fralfaro.github.io/python_advanced/)
+::::{grid}
+:gutter: 2
 
+:::{grid-item-card} AUTOR
+[🌐](https://fralfaro.github.io/portfolio/about_me/me/) Francisco Alfaro Medina
+:::
 
-<img src="https://cdn.worldvectorlogo.com/logos/python-3.svg" alt="" align="center" width="500"/>
+:::{grid-item-card} FECHA DE PUBLICACIÓN
+📅 Marzo del 2024
+:::
+
+::::
 
 ## Contenidos
 

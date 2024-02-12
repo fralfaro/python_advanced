@@ -1,0 +1,32 @@
+# Table of contents
+format: jb-book
+root: docs/index.md
+parts:
+  - caption: Contenidos
+    numbered: True
+    chapters:
+    - file: docs/oop/intro.md
+      sections:
+        - file: docs/oop/definiciones.md
+        - file: docs/oop/oop_conceptos_basicos.ipynb
+        - file: docs/oop/oop_herencia.ipynb
+        - file: docs/oop/oop_cohesion.ipynb
+        - file: docs/oop/oop_abstraccion.ipynb
+        - file: docs/oop/oop_polimorfismo.ipynb
+        - file: docs/oop/oop_acoplamiento.ipynb
+        - file: docs/oop/oop_encapsulamiento.ipynb
+    - file: docs/solid/intro.md
+      sections:
+        - file: docs/solid/1_srp.ipynb
+        - file: docs/solid/2_ocp.ipynb
+        - file: docs/solid/3_lsp.ipynb
+        - file: docs/solid/4_isp.ipynb
+        - file: docs/solid/5_dip.ipynb
+    - file: docs/patterns/intro
+      sections:
+        - file: docs/patterns/definiciones.md
+        - file: docs/patterns/creacionales.ipynb
+        - file: docs/patterns/estructurales.ipynb
+        - file: docs/patterns/comportamiento.ipynb
+
+
