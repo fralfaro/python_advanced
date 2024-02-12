@@ -3,7 +3,7 @@
 
 El principio [SOLID](https://es.wikipedia.org/wiki/SOLID) es un conjunto de cinco principios de diseño de software que fueron introducidos por el ingeniero de software Robert C. Martin, también conocido como "Uncle Bob". Estos principios están destinados a guiar a los desarrolladores hacia prácticas de diseño de software más limpias, mantenibles y extensibles.
 
-<img src="images/solid.png" alt="Descripción de la imagen" width="500">
+<img src="https://raw.githubusercontent.com/fralfaro/python_advanced/main/docs/solid/images/solid.png" alt="Descripción de la imagen" width="500">
 
 
 
